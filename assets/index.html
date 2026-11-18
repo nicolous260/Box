@@ -179,10 +179,24 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .btn:active{background:var(--hair)}
 .btn.danger{color:#c0463a}
 .foot{margin-top:34px;text-align:center;font-size:10px;letter-spacing:.14em;color:var(--muted)}
+
+/* ---------- realism pass ---------- */
+.sheet{background-image:
+  url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .28  0 0 0 0 .33  0 0 0 .3 -.1'/></filter><rect width='260' height='260' filter='url(%23n)'/></svg>"),
+  url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.012 .09' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .6 -.3'/></filter><rect width='420' height='420' filter='url(%23f)'/></svg>");
+  background-blend-mode:multiply,soft-light}
+.platen{position:absolute;left:0;right:0;bottom:0;height:84px;z-index:3;pointer-events:none;
+  background:linear-gradient(to top,rgba(30,12,30,.24),rgba(30,12,30,.07) 45%,transparent)}
+.sheet{box-shadow:0 -1px 0 rgba(255,255,255,.55) inset,1px 0 0 rgba(255,255,255,.35) inset,-1px 0 0 rgba(60,30,60,.12) inset,0 14px 30px rgba(30,10,30,.22),0 2px 4px rgba(30,10,30,.18)}
+.typed{filter:url(#inkrough);mix-blend-mode:multiply}
+body.lamp .typed{mix-blend-mode:normal}
+.typed span.w{opacity:.55;text-shadow:0 0 1px var(--ink)}
+.typed span.x{text-shadow:0 0 .6px var(--ink),.7px .4px 0 rgba(38,33,31,.28)}
 </style>
 </head>
 <body data-route="home">
 <div class="grain desk-grain" style="position:fixed;z-index:0"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="inkrough" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="d"/><feGaussianBlur in="d" stdDeviation=".28"/></filter></svg>
 <div id="app">
 
   <!-- HOME -->
@@ -371,13 +385,17 @@ var STK=[
 /* ================= model ================= */
 var cur=null;           // current note
 var typed=$("#typed"),ta=$("#ta"),scroll=$("#scroll"),sheet=$("#sheet"),stage=$("#stage"),carriage=$("#carriage");
+try{sheet.insertAdjacentHTML("beforeend",'<div class="platen"></div>')}catch(e){}
+function jolt(){try{sheet.animate([{translate:"0 0"},{translate:"0 1.1px"},{translate:"0 0"}],{duration:70,easing:"ease-out"})}catch(e){}}
 var rendered="",charW=11,cols=22,lineH=30;
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 function words(s){var m=s.trim().match(/\S+/g);return m?m.length:0}
 function hash(i){var x=(i*2654435761)>>>0;x^=x>>>13;x=(x*1274126177)>>>0;return (x^(x>>>16))>>>0}
 var CLS=["c a","c","c b","c d","c e","c","c a d","c"];
 function span(ch,i,isNew){
-  var s=document.createElement("span");s.className=CLS[hash(i)%CLS.length]+(isNew?" n":"");s.textContent=ch;return s;
+  var s=document.createElement("span"),h=hash(i*3+1);s.className=CLS[hash(i)%CLS.length]+(h%11===0?" w":"")+(h%7===0?" x":"")+(isNew?" n":"");
+  if(ch!=="\n"&&ch!==" "){s.style.position="relative";s.style.top=(((h>>>4)%9)-4)*.16+"px";s.style.left=(((h>>>9)%7)-3)*.14+"px"}
+  s.textContent=ch;return s;
 }
 function measure(){
   var m=document.createElement("span");m.style.cssText="position:absolute;visibility:hidden;white-space:pre;font:inherit;letter-spacing:inherit";
@@ -468,7 +486,7 @@ function onInput(){
   feedShift(prevH);stickToBottom();placeCarriage();
   var li=lineIndex(),ch=grew?v[v.length-1]:"";
   if(grew){
-    S.keys++;
+    S.keys++;jolt();
     carriage.classList.add("hit");setTimeout(function(){carriage.classList.remove("hit")},70);
     if(ch==="\n"){sndReturn();buzz(14)}
     else if(li>lastLine){sndBell();buzz(18)}
