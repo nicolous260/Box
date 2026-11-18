@@ -1,0 +1,25 @@
+<resources>
+  <public type="attr" name="theme" id="0x02010000"/>
+  <public type="attr" name="label" id="0x02010001"/>
+  <public type="attr" name="icon" id="0x02010002"/>
+  <public type="attr" name="name" id="0x02010003"/>
+  <public type="attr" name="exported" id="0x02010010"/>
+  <public type="attr" name="configChanges" id="0x0201001f"/>
+  <public type="attr" name="windowBackground" id="0x02010054"/>
+  <public type="attr" name="windowNoTitle" id="0x02010056"/>
+  <public type="attr" name="drawable" id="0x02010199"/>
+  <public type="attr" name="minSdkVersion" id="0x0201020c"/>
+  <public type="attr" name="versionCode" id="0x0201021b"/>
+  <public type="attr" name="versionName" id="0x0201021c"/>
+  <public type="attr" name="windowSoftInputMode" id="0x0201022b"/>
+  <public type="attr" name="targetSdkVersion" id="0x02010270"/>
+  <public type="attr" name="allowBackup" id="0x02010280"/>
+  <public type="attr" name="windowActionBar" id="0x020102cd"/>
+  <public type="attr" name="hardwareAccelerated" id="0x020102d3"/>
+  <public type="attr" name="windowDrawsSystemBarBackgrounds" id="0x02010450"/>
+  <public type="attr" name="statusBarColor" id="0x02010451"/>
+  <public type="attr" name="navigationBarColor" id="0x02010452"/>
+  <public type="attr" name="windowLightStatusBar" id="0x020104e0"/>
+  <public type="attr" name="windowLightNavigationBar" id="0x0201056c"/>
+  <public type="style" name="Theme.DeviceDefault.Light.NoActionBar" id="0x0203012c"/>
+</resources>
