@@ -323,6 +323,17 @@ body.lamp .pill button,body.lamp .pill button.on{color:#f1dcd8}
 .typed span.w{opacity:.8}.typed span.b{opacity:.82}.typed span.e{opacity:.88}
 .sheet::before{height:60px}
 .platen{background:linear-gradient(to top,rgba(30,12,30,.16),rgba(30,12,30,.04) 50%,transparent)}
+
+/* ---------- v5: softer lamp ---------- */
+.sheet::after{background:rgba(36,20,42,.70);
+  -webkit-mask-image:conic-gradient(from 0deg at var(--cx) calc(100% - var(--bh) - 24px),transparent 0 27deg,rgba(0,0,0,.18) 32deg,rgba(0,0,0,.5) 38deg,rgba(0,0,0,.85) 44deg,#000 50deg 310deg,rgba(0,0,0,.85) 316deg,rgba(0,0,0,.5) 322deg,rgba(0,0,0,.18) 328deg,transparent 333deg 360deg);
+          mask-image:conic-gradient(from 0deg at var(--cx) calc(100% - var(--bh) - 24px),transparent 0 27deg,rgba(0,0,0,.18) 32deg,rgba(0,0,0,.5) 38deg,rgba(0,0,0,.85) 44deg,#000 50deg 310deg,rgba(0,0,0,.85) 316deg,rgba(0,0,0,.5) 322deg,rgba(0,0,0,.18) 328deg,transparent 333deg 360deg)}
+.glow{background:
+    radial-gradient(ellipse 26% 14% at var(--cx) calc(100% - var(--bh) - 22px),rgba(255,230,225,.85),rgba(255,200,205,.38) 60%,rgba(255,190,200,0) 100%),
+    radial-gradient(ellipse 95% 85% at var(--cx) calc(100% - var(--bh) - 20px),rgba(255,196,222,.50),rgba(255,176,210,.30) 45%,rgba(255,170,205,.14) 80%,rgba(255,170,205,.06) 100%);
+  -webkit-mask-image:conic-gradient(from 0deg at var(--cx) calc(100% - var(--bh) - 24px),#000 0 27deg,rgba(0,0,0,.6) 34deg,rgba(0,0,0,.2) 41deg,transparent 47deg 313deg,rgba(0,0,0,.2) 319deg,rgba(0,0,0,.6) 326deg,#000 333deg 360deg);
+          mask-image:conic-gradient(from 0deg at var(--cx) calc(100% - var(--bh) - 24px),#000 0 27deg,rgba(0,0,0,.6) 34deg,rgba(0,0,0,.2) 41deg,transparent 47deg 313deg,rgba(0,0,0,.2) 319deg,rgba(0,0,0,.6) 326deg,#000 333deg 360deg)}
+body.lamp .sheet{background-color:#f4d2e6}
 </style>
 </head>
 <body data-route="home">
